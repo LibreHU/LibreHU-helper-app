@@ -105,9 +105,10 @@ not found », regarder `usage.txt` dans l'artefact *R8 reports* de la CI.
 
 GPL-2.0, comme les autres applis LibreHU.
 
-**Style rétro de LibreHU Launcher** : quand le launcher est en style rétro (VFD ambre, LCD vert, cassette), cette appli
-prend sa palette (jour ou nuit) et sa police d'afficheur à segments, en majuscules sans accents (« LibreHU Seg14 »,
-tirée de DSEG14 © keshikan, SIL Open Font License 1.1, voir `third_party/DSEG-LICENSE.txt`). Le launcher publie le
-style et la palette par `content://org.librehu.launcher.theme/theme` (colonnes `style`, `background`, `surface`,
-`surface_high`, `on_accent`, `text`, `text_dim`) et par la diffusion `org.librehu.action.THEME_CHANGED` (mêmes noms
-en extras).
+**Style rétro et police de LibreHU Launcher** : quand le launcher est en style rétro (les couleurs d'un afficheur
+d'autoradio tirées de sa couleur d'accent, couleur RGB comprise), cette appli prend sa palette (jour ou nuit) ; quand
+la **police d'afficheur à segments** y est choisie (dans tous les styles), cette appli la prend aussi, en majuscules
+sans accents (« LibreHU Seg14 », tirée de DSEG14 © keshikan, SIL Open Font License 1.1, voir
+`third_party/DSEG-LICENSE.txt`). Le launcher publie le style, la police et la palette par
+`content://org.librehu.launcher.theme/theme` (colonnes `style`, `font`, `background`, `surface`, `surface_high`,
+`on_accent`, `text`, `text_dim`) et par la diffusion `org.librehu.action.THEME_CHANGED` (mêmes noms en extras).
