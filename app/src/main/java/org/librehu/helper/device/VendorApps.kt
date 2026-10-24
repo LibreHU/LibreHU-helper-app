@@ -121,7 +121,8 @@ object VendorApps {
             score += 1
             reasons += "name"
         }
-        if (holders.any { it == pkg || pkg.startsWith(it) || it.startsWith(pkg.take(15)) }) {
+        // /proc/<pid>/comm keeps 15 characters of the process name (the end of the package name for apps).
+        if (holders.any { h -> h.length >= 6 && (pkg == h || pkg.endsWith(h) || pkg.startsWith(h)) }) {
             score += 4
             reasons += "holds a serial port"
         }

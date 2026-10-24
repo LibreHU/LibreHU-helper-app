@@ -24,5 +24,5 @@ interface Collector {
 }
 
 object Collectors {
-    val ALL: List<Collector> = listOf(SystemInfo, Logs, KernelHardware, VendorFiles)
+    val ALL: List<Collector> = listOf(SystemInfo, Logs, KernelHardware, VendorFiles, HardwareScan, BootImages)
 }

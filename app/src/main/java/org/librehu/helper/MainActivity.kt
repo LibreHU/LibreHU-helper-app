@@ -10,7 +10,7 @@ import kotlinx.coroutines.launch
 import org.librehu.helper.ui.CarColors
 import org.librehu.helper.ui.CarPalette
 import org.librehu.helper.ui.CarTheme
-import org.librehu.helper.ui.HelperScreen
+import org.librehu.helper.ui.MainScreen
 import org.librehu.helper.ui.ThemeFollower
 
 /** Report sections, root, anonymisation and export. */
@@ -36,7 +36,7 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
-        setContent { CarTheme { HelperScreen() } }
+        setContent { CarTheme { MainScreen() } }
     }
 
     override fun onDestroy() {

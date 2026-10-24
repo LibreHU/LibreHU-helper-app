@@ -27,6 +27,18 @@ android {
         targetSdk = 35
         versionCode = git("rev-list", "--count", "HEAD")?.toIntOrNull() ?: 1
         versionName = git("describe", "--tags", "--always", "--dirty", "--exclude", "latest-*", "--exclude", "build-*") ?: "dev"
+        // Head units are ARM, 64 or 32-bit; a few old ones (Intel SoFIA) are x86.
+        ndk { abiFilters += listOf("arm64-v8a", "armeabi-v7a", "x86", "x86_64") }
+    }
+
+    // libhwprobe: I²C and serial probes (src/main/cpp), loaded as root by app_process (hw/HwProbe.kt).
+    externalNativeBuild {
+        cmake { path = file("src/main/cpp/CMakeLists.txt") }
+    }
+
+    // Native libraries extracted to nativeLibraryDir: app_process loads libhwprobe.so from there by its path.
+    packaging {
+        jniLibs { useLegacyPackaging = true }
     }
     // One signing key for every LibreHU app, so that updates (LibreHU OTA) install over each other: LIBREHU_KEYSTORE*
     // from the CI secrets when set, else keystore/librehu.jks of the repository.

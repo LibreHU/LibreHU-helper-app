@@ -7,3 +7,7 @@
 -keepclasseswithmembers,includedescriptorclasses class * {
     native <methods>;
 }
+
+# Started by name through app_process as root (hw/Hw.kt), JNI of libhwprobe.
+-keep class org.librehu.helper.hw.HwProbe { public static void main(java.lang.String[]); }
+-keep class org.librehu.helper.hw.HwNative { *; }
