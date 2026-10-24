@@ -104,3 +104,10 @@ not found », regarder `usage.txt` dans l'artefact *R8 reports* de la CI.
 ## Licence
 
 GPL-2.0, comme les autres applis LibreHU.
+
+**Style rétro de LibreHU Launcher** : quand le launcher est en style rétro (VFD ambre, LCD vert, cassette), cette appli
+prend sa palette (jour ou nuit) et sa police d'afficheur à segments, en majuscules sans accents (« LibreHU Seg14 »,
+tirée de DSEG14 © keshikan, SIL Open Font License 1.1, voir `third_party/DSEG-LICENSE.txt`). Le launcher publie le
+style et la palette par `content://org.librehu.launcher.theme/theme` (colonnes `style`, `background`, `surface`,
+`surface_high`, `on_accent`, `text`, `text_dim`) et par la diffusion `org.librehu.action.THEME_CHANGED` (mêmes noms
+en extras).
