@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">LibreHU Helper</string>
+    <string name="intro">Collects the technical information needed to port LibreHU to another head unit, ROM, MCU, CAN box or car, into a zip report. Read only: nothing on the unit is changed.</string>
+
+    <string name="root">Root</string>
+    <string name="root_scanning">Looking for root (the ROM\'s own su, then the root managers)…</string>
+    <string name="root_ok">Root: %1$s</string>
+    <string name="root_none">No root: the report is collected without it (fewer details, no partition images).</string>
+    <string name="root_managers">Root managers found: %1$s</string>
+    <string name="root_hint">KernelSU / KernelSU Next / APatch: allow LibreHU Helper in the manager\'s Superuser list, then search again. Magisk / SuperSU: answer the prompt.</string>
+    <string name="root_rescan">Search again</string>
+
+    <string name="sections">Report content</string>
+    <string name="sections_hint">The sections to collect. The ones with root details work without it, with less.</string>
+
+    <string name="privacy">Privacy</string>
+    <string name="anonymise">Anonymise</string>
+    <string name="anonymise_hint">Removes serial numbers, IMEI, Wi-Fi / Bluetooth addresses, Android ID and GPS positions from the text files.</string>
+
+    <string name="export">Export</string>
+    <string name="export_hint">Plug in a USB key if you want (not required), then choose the folder where the zip report is written.</string>
+    <string name="export_no_picker">This ROM has no folder picker: the report goes to the app\'s folder (Android/data/org.librehu.helper/files/diag).</string>
+    <string name="export_folder">Choose the folder and export</string>
+    <string name="export_app_folder">Export to the app\'s folder</string>
+    <string name="export_running">Section %1$d / %2$d</string>
+    <string name="export_done">Done: %1$s (%2$d files, %3$d KB before compression)</string>
+    <string name="export_failed">Failed: %1$s</string>
+    <string name="error_create">cannot create the file in this folder</string>
+    <string name="step_root">Root</string>
+
+    <string name="c_system">Android and ROM</string>
+    <string name="c_system_summary">Build, real Android version, properties, kernel line, partitions, mounts, services, HALs, processes, apps of the ROM maker</string>
+</resources>

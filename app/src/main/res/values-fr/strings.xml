@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">LibreHU Helper</string>
+    <string name="intro">Rassemble les informations techniques nécessaires pour porter LibreHU sur un autre autoradio, une autre ROM, une autre MCU, un autre boîtier CAN ou une autre voiture, dans un rapport zip. Lecture seule : rien n\'est modifié sur l\'autoradio.</string>
+
+    <string name="root">Root</string>
+    <string name="root_scanning">Recherche du root (su de la ROM, puis gestionnaires de root)…</string>
+    <string name="root_ok">Root : %1$s</string>
+    <string name="root_none">Pas de root : le rapport est fait sans (moins de détails, pas d\'images de partitions).</string>
+    <string name="root_managers">Gestionnaires de root trouvés : %1$s</string>
+    <string name="root_hint">KernelSU / KernelSU Next / APatch : autoriser LibreHU Helper dans la liste Superuser du gestionnaire, puis relancer la recherche. Magisk / SuperSU : répondre à la demande.</string>
+    <string name="root_rescan">Relancer la recherche</string>
+
+    <string name="sections">Contenu du rapport</string>
+    <string name="sections_hint">Les sections à collecter. Celles qui profitent du root marchent aussi sans, avec moins de détails.</string>
+
+    <string name="privacy">Confidentialité</string>
+    <string name="anonymise">Anonymiser</string>
+    <string name="anonymise_hint">Retire des fichiers texte les numéros de série, l\'IMEI, les adresses Wi-Fi / Bluetooth, l\'Android ID et les positions GPS.</string>
+
+    <string name="export">Export</string>
+    <string name="export_hint">Branchez une clé USB si vous le souhaitez (facultatif), puis choisissez le dossier où écrire le rapport zip.</string>
+    <string name="export_no_picker">Cette ROM n\'a pas de sélecteur de dossier : le rapport va dans le dossier de l\'appli (Android/data/org.librehu.helper/files/diag).</string>
+    <string name="export_folder">Choisir le dossier et exporter</string>
+    <string name="export_app_folder">Exporter dans le dossier de l\'appli</string>
+    <string name="export_running">Section %1$d / %2$d</string>
+    <string name="export_done">Terminé : %1$s (%2$d fichiers, %3$d Ko avant compression)</string>
+    <string name="export_failed">Échec : %1$s</string>
+    <string name="error_create">impossible de créer le fichier dans ce dossier</string>
+    <string name="step_root">Root</string>
+
+    <string name="c_system">Android et ROM</string>
+    <string name="c_system_summary">Build, vraie version d\'Android, propriétés, ligne du noyau, partitions, montages, services, HAL, processus, applis du fabricant de la ROM</string>
+</resources>
