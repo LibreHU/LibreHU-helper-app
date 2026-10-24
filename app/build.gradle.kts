@@ -16,6 +16,9 @@ fun git(vararg args: String): String? =
         null
     }
 
+// "-<branch>" at the end of versionName: the branch (edition) the APK was built from (GITHUB_REF_NAME in the CI).
+fun branchName(): String = System.getenv("GITHUB_REF_NAME")?.takeIf { it.isNotBlank() } ?: git("rev-parse", "--abbrev-ref", "HEAD") ?: "local"
+
 android {
     namespace = "org.librehu.helper"
     compileSdk = 37
@@ -26,7 +29,7 @@ android {
         minSdk = 28
         targetSdk = 35
         versionCode = git("rev-list", "--count", "HEAD")?.toIntOrNull() ?: 1
-        versionName = git("describe", "--tags", "--always", "--dirty", "--exclude", "latest-*", "--exclude", "build-*") ?: "dev"
+        versionName = (git("describe", "--tags", "--always", "--dirty", "--exclude", "latest-*", "--exclude", "build-*") ?: "dev") + "-" + branchName()
         // Head units are ARM, 64 or 32-bit; a few old ones (Intel SoFIA) are x86.
         ndk { abiFilters += listOf("arm64-v8a", "armeabi-v7a", "x86", "x86_64") }
     }
