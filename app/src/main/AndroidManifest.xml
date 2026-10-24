@@ -7,6 +7,11 @@
         android:name="android.permission.QUERY_ALL_PACKAGES"
         tools:ignore="QueryAllPackagesPermission" />
 
+    <!-- LibreHU apps (same signing key): LibreHU-service's bridge reads and changes this app's settings for the phone app. -->
+    <permission
+        android:name="org.librehu.permission.BRIDGE"
+        android:protectionLevel="signature" />
+
     <application
         android:allowBackup="false"
         android:icon="@drawable/ic_launcher"
@@ -28,5 +33,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!-- Settings pages for LibreHU's phone app, read and changed by LibreHU-service's bridge (.bridge.BridgeProvider). -->
+        <provider
+            android:name=".bridge.BridgeProvider"
+            android:authorities="org.librehu.helper.bridge"
+            android:exported="true"
+            android:permission="org.librehu.permission.BRIDGE" />
     </application>
 </manifest>

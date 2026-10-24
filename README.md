@@ -90,6 +90,13 @@ l'appli quand les périphériques sont lisibles sans root.
 
 **Pas encore testé sur un autoradio.**
 
+## Appli téléphone (LibreHU Bridge)
+
+Réglable depuis le téléphone par l'appli LibreHU Bridge (Android et iPhone), à travers LibreHU-service : les sections du rapport, l'anonymisation, le root et le rapport écrit dans le dossier de l'appli.
+Fournisseur `<paquet>.bridge` (`bridge/BridgeProvider.kt`), réservé aux applis signées avec la clé LibreHU (permission
+`org.librehu.permission.BRIDGE`, vérifiée dans `call()` lui-même) ; format décrit dans
+[LibreHU-service, docs/bridge.md](https://github.com/LibreHU/LibreHU-service/blob/main/docs/bridge.md).
+
 ## Compiler
 
 ```sh
