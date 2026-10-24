@@ -31,4 +31,10 @@
 
     <string name="c_system">Android et ROM</string>
     <string name="c_system_summary">Build, vraie version d\'Android, propriétés, ligne du noyau, partitions, montages, services, HAL, processus, applis du fabricant de la ROM</string>
+    <string name="c_logs">Journaux</string>
+    <string name="c_logs_summary">logcat (tous les buffers avec root), journal du noyau, démarrage précédent, plantages et tombstones</string>
+    <string name="c_kernel">Noyau et matériel</string>
+    <string name="c_kernel_summary">Config du noyau, modules, device tree (texte et .dtb), périphériques d\'entrée et keylayouts, périphériques I²C / USB / PCI, ports série, son, vidéo, GPIO, CPU, écran, services audio / entrées / Bluetooth</string>
+    <string name="c_vendor">Fichiers du fabricant</string>
+    <string name="c_vendor_summary">Liste et petits fichiers texte de /jancar, /oem, /custom… (boîtier CAN, touches, tactile, réglages voiture), audio policy, codecs, build.prop</string>
 </resources>

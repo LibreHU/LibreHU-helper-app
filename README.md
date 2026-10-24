@@ -29,6 +29,9 @@ LibreHU Helper dans la liste *Superuser* du gestionnaire puis **Relancer la rech
 | Section | Contenu |
 |---|---|
 | Android et ROM | build, **vraie version d'Android** (depuis le niveau de SDK : certaines ROM falsifient `ro.build.version.release`, celle de Jancar annonce 12 sur Android 9), toutes les propriétés, ligne du noyau, partitions, fstab, montages, SELinux, services, HAL, processus, applis installées et applis du fabricant de la ROM |
+| Journaux | logcat (tous les buffers avec root, sinon les lignes de l'appli seulement), journal du noyau, démarrage précédent (pstore, last_kmsg), plantages, 3 derniers tombstones |
+| Noyau et matériel | config du noyau, modules, **device tree** (texte et `.dtb` binaire lisible par `dtc`), périphériques d'entrée et keylayouts du fabricant, périphériques I²C / USB / PCI connus du noyau, ports série et leurs compteurs de trafic (`/proc/tty/driver`), son (cartes, `tinymix`), vidéo, GPIO, CPU, écran, services audio / entrées / Bluetooth / alimentation. Rien n'est sondé : les scans sont dans l'onglet Matériel. |
+| Fichiers du fabricant | liste et petits fichiers texte (≤ 256 Ko) de `/jancar`, `/oem`, `/custom`, `/cust`… (boîtier CAN, touches, tactile, réglages voiture), audio policy, codecs, `build.prop` |
 
 `README.txt` résume l'appareil, le root et les sections ; `manifest.json` liste chaque fichier avec sa taille et son
 SHA-256, et ce qui a été laissé de côté et pourquoi.
@@ -52,7 +55,7 @@ octets aléatoires).
 ## En cours
 
 Les onglets suivants arrivent : compatibilité de l'appareil et dépannage, tutos (désactiver les applis du fabricant,
-avec ou sans root), journaux, matériel (ports série, I²C, USB, PCIe, puce MFi CarPlay), recherche de la MCU et du
+avec ou sans root), matériel (ports série, I²C, USB, PCIe, puce MFi CarPlay), recherche de la MCU et du
 protocole du boîtier CAN, sauvegarde des APK du fabricant, images des partitions et full dump (fichier scatter
 MediaTek / Autochips).
 
