@@ -9,6 +9,18 @@ Thème clair / sombre et couleur d'accent de [LibreHU Launcher](https://github.c
 (ou mode nuit d'Android sans lui), interface en français et en anglais, mise à jour par
 [LibreHU Apps](https://github.com/LibreHU/LibreHU-OTA-app).
 
+## Captures d'écran
+
+| | |
+|---|---|
+| ![Rapport](docs/screenshots/report.png)<br>Rapport | ![Rapport (2)](docs/screenshots/report-2.png)<br>Rapport (2) |
+| ![Compatibilité](docs/screenshots/compat.png)<br>Compatibilité | ![Compatibilité (2)](docs/screenshots/compat-2.png)<br>Compatibilité (2) |
+| ![Matériel](docs/screenshots/hardware.png)<br>Matériel | ![Matériel (2)](docs/screenshots/hardware-2.png)<br>Matériel (2) |
+| ![APK du fabricant](docs/screenshots/apks.png)<br>APK du fabricant | ![Full dump](docs/screenshots/dump.png)<br>Full dump |
+| ![Tutos](docs/screenshots/guides.png)<br>Tutos | ![Tutos (2)](docs/screenshots/guides-2.png)<br>Tutos (2) |
+
+Captures sur l'émulateur Android 9 (1280×720, 160 dpi comme l'autoradio), sans autoradio branché : les valeurs du véhicule et de la MCU sont vides. Refaites-les avec l'action **Screenshots** de [LibreHU-OTA-app](https://github.com/LibreHU/LibreHU-OTA-app/tree/main/screenshots). Galerie : [librehu.github.io/screenshots/helper.html](https://librehu.github.io/screenshots/helper.html).
+
 ## Root
 
 Facultatif : sans root, le rapport est fait avec ce qu'Android laisse lire (moins de détails). Recherche en deux temps :
