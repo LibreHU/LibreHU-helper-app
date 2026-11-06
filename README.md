@@ -120,9 +120,6 @@ La CI (`.github/workflows/build.yml`) publie à chaque push la prerelease `lates
 LibreHU (`keystore/`) et **optimisé par R8** (sans renommage, `app/proguard-rules.pro`) : en cas de « class / method
 not found », regarder `usage.txt` dans l'artefact *R8 reports* de la CI.
 
-## Licence
-
-GPL-2.0, comme les autres applis LibreHU.
 
 **Style rétro et police de LibreHU Launcher** : quand le launcher est en style rétro (les couleurs d'un afficheur
 d'autoradio tirées de sa couleur d'accent, couleur RGB comprise), cette appli prend sa palette (jour ou nuit) ; quand
@@ -140,6 +137,26 @@ but non lucratif, dons récurrents) :
 
 [![Faire un don avec Liberapay](https://liberapay.com/assets/widgets/donate.svg)](https://liberapay.com/DokT/donate)
 [![Donateurs sur Liberapay](https://img.shields.io/liberapay/patrons/DokT.svg?logo=liberapay)](https://liberapay.com/DokT/)
+
+## Licence
+
+Copyright (C) 2026 les contributeurs de LibreHU.
+
+Le code de ce dépôt est sous **GNU AGPL v3 ou ultérieure** (`AGPL-3.0-or-later`, fichier [`LICENSE`](LICENSE)), avec les
+[termes additionnels](LICENSE-ADDITIONAL-TERMS.md) de son article 7 : garder la mention « Basé sur LibreHU –
+https://github.com/LibreHU » et marquer une version modifiée comme telle. Qui distribue une version modifiée, ou la
+fait utiliser à distance, doit en donner le code source complet sous la même licence.
+
+### Code, ressources et données d'autres projets
+
+Ils gardent leur licence.
+
+| Quoi | Où | Auteur | Licence |
+|---|---|---|---|
+| Police « LibreHU Seg14 », tirée de DSEG14 | `app/src/main/res/font/` | [keshikan](https://github.com/keshikan/DSEG) | SIL OFL 1.1, `third_party/DSEG-LICENSE.txt` |
+| Jetpack Compose, Material 3 et ses icônes, AndroidX (Activity, Core, Lifecycle) | bibliothèques | Google, The Android Open Source Project | Apache-2.0 |
+| Kotlin, kotlinx.coroutines | bibliothèques | JetBrains | Apache-2.0 |
+| Enveloppe Gradle | `gradlew`, `gradlew.bat`, `gradle/wrapper/` | Gradle | Apache-2.0 |
 
 ## Contact
 
