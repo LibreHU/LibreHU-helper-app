@@ -17,6 +17,7 @@ import androidx.compose.material.icons.automirrored.filled.MenuBook
 import androidx.compose.material.icons.filled.Android
 import androidx.compose.material.icons.filled.Checklist
 import androidx.compose.material.icons.filled.Description
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Memory
 import androidx.compose.material.icons.filled.Storage
 import androidx.compose.material3.Text
@@ -44,6 +45,7 @@ private enum class Tab(
     APKS(R.string.tab_apks, Icons.Default.Android),
     DUMP(R.string.tab_dump, Icons.Default.Storage),
     GUIDES(R.string.tab_guides, Icons.AutoMirrored.Filled.MenuBook),
+    INFO(R.string.info_title, Icons.Default.Info),
 }
 
 @Composable
@@ -66,6 +68,7 @@ fun MainScreen() {
                 Tab.APKS -> ApksScreen()
                 Tab.DUMP -> DumpScreen()
                 Tab.GUIDES -> GuidesScreen()
+                Tab.INFO -> InfoContent()
             }
         }
     }
