@@ -33,6 +33,9 @@
     <string name="export_app_folder">Export to the app\'s folder</string>
     <string name="export_app_folder_hint">App\'s folder: Android/data/org.librehu.helper/files/diag (also used when the ROM has no folder picker).</string>
     <string name="export_done">Done: %1$s (%2$d files, %3$d KB before compression)</string>
+    <string name="crash_title">LibreHU Helper stopped last time</string>
+    <string name="crash_hint">This error goes into the next report (helper-crash.txt). Also in Android/data/org.librehu.helper/files/crash.txt.</string>
+    <string name="crash_clear">Clear</string>
     <string name="c_system">Android and ROM</string>
     <string name="c_system_summary">Build, real Android version, properties, kernel line, partitions, fstab, mounts, services, HALs, processes, apps, maker\'s apps</string>
     <string name="c_logs">Logs</string>

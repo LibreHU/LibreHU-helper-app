@@ -38,10 +38,12 @@ class Redactor(
         const val MASK = "<redacted>"
         private const val MIN_SECRET = 6
         private val TRIVIAL = setOf("unknown", "000000", "0123456789abcdef", "123456789abcdef")
-        private val MAC = Regex("(?<![0-9A-Fa-f:])(?:[0-9A-Fa-f]{2}[:-]){5}[0-9A-Fa-f]{2}(?![0-9A-Fa-f:])")
+        // No set starting with « [: »: Android 9's regex engine (ICU) reads it as a POSIX class and refused the
+        // whole pattern (U_ILLEGAL_ARGUMENT_ERROR), which stopped the app at the first anonymised report.
+        private val MAC = Regex("(?<![0-9A-Fa-f:])(?:[0-9A-Fa-f]{2}[\\-:]){5}[0-9A-Fa-f]{2}(?![0-9A-Fa-f:])")
         private val NMEA = Regex("(\\\$G[PNLAB](?:GGA|RMC|GLL|GNS)),\\S*")
         private val LOCATION = Regex("Location\\[(\\w+) -?\\d+\\.\\d+,-?\\d+\\.\\d+")
-        private val LAT_LON = Regex("(?i)\\b(lat|latitude|lon|lng|longitude)(\\s*[=:]\\s*)-?\\d+\\.\\d+")
+        private val LAT_LON = Regex("(?i)\\b(lat|latitude|lon|lng|longitude)(\\s*(?:=|:)\\s*)-?\\d+\\.\\d+")
 
         /** Properties holding values of this unit only. */
         private val SECRET_PROPS = Regex("(?i)(serial|serialno|imei|meid|iccid|imsi|wifimac|wlan.?mac|btmac|bt.?addr|bdaddr|macaddr|\\.sn$|_sn$|uuid)")

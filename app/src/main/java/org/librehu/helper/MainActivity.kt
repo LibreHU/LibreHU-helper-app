@@ -24,6 +24,7 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        CrashLog.install(this)
         theme.value.start()
         Diagnostic.scanRoot(this)
         // Screen kept on while a report is written (long dumps).

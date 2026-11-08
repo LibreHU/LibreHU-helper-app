@@ -96,6 +96,8 @@ object Diagnostic {
         scope.launch {
             try {
                 _root.value = Su.scan(app)
+            } catch (e: Throwable) {
+                CrashLog.save(app, "root scan", e)
             } finally {
                 _rootScanning.value = false
             }
@@ -106,7 +108,10 @@ object Diagnostic {
         if (!Su.scanned) _root.value = Su.scan(app)
     }
 
-    /** Runs [work] as the one long task, its result message (or error) left in [state]. */
+    /**
+     * Runs [work] as the one long task, its result message (or error) left in [state]. Errors too (a missing method or
+     * library, memory…): a message instead of a crash of the app, and their stack trace kept ([CrashLog]).
+     */
     private fun task(
         context: Context,
         name: String,
@@ -122,6 +127,9 @@ object Diagnostic {
                     State.Done(name, work(app) { step, i, n -> _state.value = State.Running(name, step, i, n) })
                 } catch (e: Exception) {
                     State.Failed(name, e.message ?: e.javaClass.simpleName)
+                } catch (e: Throwable) {
+                    CrashLog.save(app, "task $name", e)
+                    State.Failed(name, "${e.javaClass.simpleName}: ${e.message.orEmpty()}")
                 }
         }
     }
@@ -142,13 +150,17 @@ object Diagnostic {
         report.use { r ->
             r.text("README.txt", readme(app, chosen, anonymise))
             r.text("root.txt", Su.report())
+            // This app's last crash (no logcat needed).
+            CrashLog.last(app)?.let { r.text("helper-crash.txt", it) }
             for (c in chosen) {
                 section++
                 step(app.getString(c.title), section, chosen.size)
                 try {
                     c.collect(app, r)
-                } catch (e: Exception) {
-                    r.skipped(c.id, "error: ${e.message ?: e.javaClass.simpleName}")
+                } catch (e: Throwable) {
+                    // The other sections still go in the report, with this one's stack trace.
+                    r.skipped(c.id, "error: ${e.javaClass.simpleName}: ${e.message.orEmpty()}")
+                    runCatching { r.text("errors/${c.id}.txt", e.stackTraceToString()) }
                 }
             }
         }

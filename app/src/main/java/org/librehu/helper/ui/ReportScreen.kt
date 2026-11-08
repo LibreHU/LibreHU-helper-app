@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.FolderOpen
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.SaveAlt
@@ -17,6 +18,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import org.librehu.helper.CrashLog
 import org.librehu.helper.Diagnostic
 import org.librehu.helper.R
 import org.librehu.helper.collect.Collectors
@@ -34,6 +36,7 @@ fun ReportScreen() {
         mutableStateOf(Collectors.ALL.filter { prefs.getBoolean("section_${it.id}", it.default) }.map { it.id }.toSet())
     }
     var anonymise by remember { mutableStateOf(prefs.getBoolean("anonymise", true)) }
+    var crash by remember { mutableStateOf(CrashLog.last(context)) }
     val running = state is Diagnostic.State.Running
     val task = stringResource(R.string.tab_report)
 
@@ -43,6 +46,18 @@ fun ReportScreen() {
 
     Page {
         item { Hint(stringResource(R.string.intro)) }
+        crash?.let { text ->
+            item {
+                Card(stringResource(R.string.crash_title)) {
+                    Mono(text.lineSequence().take(8).joinToString("\n"))
+                    Hint(stringResource(R.string.crash_hint))
+                    Pill(stringResource(R.string.crash_clear), icon = Icons.Default.Delete) {
+                        CrashLog.clear(context)
+                        crash = null
+                    }
+                }
+            }
+        }
         item {
             Card(stringResource(R.string.root)) {
                 Body(
