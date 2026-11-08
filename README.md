@@ -65,6 +65,12 @@ jamais écrit sur l'autoradio ; `vbmeta` et dm-verity ne sont jamais touchés.
 `README.txt` résume l'appareil, le root et les sections ; `manifest.json` liste chaque fichier avec sa taille et son
 SHA-256, et ce qui a été laissé de côté et pourquoi.
 
+**Si l'appli s'arrête** : l'erreur est gardée (`files/crash.txt`, et `Android/data/org.librehu.helper/files/crash.txt`
+lisible avec un gestionnaire de fichiers), affichée en haut de l'onglet Rapport au démarrage suivant et ajoutée au
+rapport suivant (`helper-crash.txt`) : pas besoin de logcat. Une section qui échoue n'arrête plus le rapport (sa trace
+dans `errors/<section>.txt`). Sans root, le journal du noyau est laissé de côté (Android tue `dmesg` lancé par une appli).
+Test sous Android 9 (émulateur 1280x720) : workflow « Report test (Android 9) », lancé à la main.
+
 **Anonymisation** (activée par défaut) : numéros de série, IMEI, adresses Wi-Fi / Bluetooth, Android ID (lus dans
 les propriétés de l'appareil), toute adresse MAC et les positions GPS (trames NMEA, `Location[...]`, `lat=` / `lon=`)
 sont retirés des fichiers texte. Les images et les APK ne sont pas modifiés.
