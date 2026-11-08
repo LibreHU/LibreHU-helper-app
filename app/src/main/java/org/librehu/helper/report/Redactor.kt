@@ -38,8 +38,10 @@ class Redactor(
         const val MASK = "<redacted>"
         private const val MIN_SECRET = 6
         private val TRIVIAL = setOf("unknown", "000000", "0123456789abcdef", "123456789abcdef")
-        // No set starting with « [: »: Android 9's regex engine (ICU) reads it as a POSIX class and refused the
-        // whole pattern (U_ILLEGAL_ARGUMENT_ERROR), which stopped the app at the first anonymised report.
+        // No « [: » here: followed further on by « :] » (the lookarounds' sets), Android's regex engine (ICU) reads
+        // « [:…:] » as one property and refused the whole pattern on every Android from 4.1 to 15, which stopped the
+        // app at the first anonymised report (the JDK accepts it). Checked: LibreHU-open-headunit-app,
+        // tools/librehu/RegexCheck.java.
         private val MAC = Regex("(?<![0-9A-Fa-f:])(?:[0-9A-Fa-f]{2}[\\-:]){5}[0-9A-Fa-f]{2}(?![0-9A-Fa-f:])")
         private val NMEA = Regex("(\\\$G[PNLAB](?:GGA|RMC|GLL|GNS)),\\S*")
         private val LOCATION = Regex("Location\\[(\\w+) -?\\d+\\.\\d+,-?\\d+\\.\\d+")
