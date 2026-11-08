@@ -68,12 +68,15 @@ def tap(pattern, scrolls=10):
     """Taps the first node matching [pattern], scrolling the page down until it shows."""
     for _ in range(scrolls):
         p = find(dump(), pattern)
+        if p and find(dump(), pattern)[:2] != p[:2]:
+            continue  # still moving
         if p:
             print("tap", repr(p[2]), flush=True)
             adb("shell", "input", "tap", str(p[0]), str(p[1]))
             return True
-        adb("shell", "input", "swipe", "900", "620", "900", "220", "400")
-        time.sleep(1.5)
+        # Slow swipe (no fling) and time to settle: a tap must land where the node was dumped.
+        adb("shell", "input", "swipe", "900", "620", "900", "320", "1500")
+        time.sleep(2.5)
     print("not found:", pattern, flush=True)
     return False
 
