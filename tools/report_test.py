@@ -68,7 +68,8 @@ def tap(pattern, scrolls=10):
     """Taps the first node matching [pattern], scrolling the page down until it shows."""
     for _ in range(scrolls):
         p = find(dump(), pattern)
-        if p and find(dump(), pattern)[:2] != p[:2]:
+        q = find(dump(), pattern) if p else None
+        if p and (q is None or q[:2] != p[:2]):
             continue  # still moving
         if p:
             print("tap", repr(p[2]), flush=True)
