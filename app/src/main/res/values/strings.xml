@@ -40,6 +40,8 @@
     <string name="c_system_summary">Build, real Android version, properties, kernel line, partitions, fstab, mounts, services, HALs, processes, apps, maker\'s apps</string>
     <string name="c_logs">Logs</string>
     <string name="c_logs_summary">logcat (every buffer with root), kernel log, previous boot, crashes and tombstones</string>
+    <string name="c_service">LibreHU-service</string>
+    <string name="c_service_summary">State, watchdog, stack of each thread, last log lines and MCU frames, its log file, standby journal and CAN export (no root needed); with root, its threads seen by Android and the kernel, its ANR traces and crashes. Make the report while the service is frozen, before a force stop.</string>
     <string name="c_kernel">Kernel and hardware</string>
     <string name="c_kernel_summary">Kernel config, modules, device tree (text and .dtb), input devices and key layouts, I²C / USB / PCI devices, serial ports, sound, video, GPIO, CPU, display, audio / input / Bluetooth services</string>
     <string name="c_vendor">Maker\'s files</string>

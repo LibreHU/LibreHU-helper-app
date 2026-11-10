@@ -8,6 +8,8 @@ import java.io.Closeable
 import java.io.File
 import java.io.OutputStream
 import java.security.MessageDigest
+import java.util.concurrent.LinkedBlockingQueue
+import java.util.concurrent.TimeUnit
 import java.util.zip.ZipEntry
 import java.util.zip.ZipOutputStream
 
@@ -83,6 +85,51 @@ class Report(
         end("")
     }
 
+    /**
+     * The text [open] gives (another app's content URI…), line by line through the redactor, [timeoutS] at most: read on
+     * a thread of its own, left behind if the other side never ends it (an app stuck is what the report is made for).
+     */
+    fun stream(
+        name: String,
+        timeoutS: Long = 60,
+        open: () -> java.io.InputStream?,
+    ) {
+        progress(name)
+        val s = begin(name)
+        val lines = LinkedBlockingQueue<Any>(10_000)
+        Thread({
+            try {
+                val input = open() ?: throw IllegalStateException("nothing to read")
+                input.bufferedReader().use { r -> r.forEachLine { lines.put(it) } }
+                lines.put(END)
+            } catch (e: Throwable) {
+                runCatching { lines.put(e) }
+            }
+        }, "report-stream").apply {
+            isDaemon = true
+            start()
+        }
+        val deadline = System.currentTimeMillis() + timeoutS * 1000
+        var note = ""
+        while (true) {
+            val left = deadline - System.currentTimeMillis()
+            val x = if (left > 0) lines.poll(left, TimeUnit.MILLISECONDS) else null
+            if (x == null) {
+                s.line("# timeout ${timeoutS}s")
+                note = "timeout"
+                break
+            }
+            if (x === END) break
+            if (x is Throwable) {
+                s.line("# error: $x")
+                note = "error: ${x.javaClass.simpleName}"
+                break
+            }
+            s.line(redact(x as String))
+        }
+        end(note)
+    }
+
     /** A note in the manifest for something left out on purpose (excluded partition, missing root…). */
     fun skipped(
         name: String,
@@ -106,6 +153,9 @@ class Report(
     }
 
     private fun redact(line: String) = redactor?.apply(line) ?: line
+
+    /** End of a [stream]. */
+    private object END
 
     private fun begin(name: String): EntrySink {
         sink?.let { end("unfinished") }
