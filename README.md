@@ -136,6 +136,13 @@ sans accents (« LibreHU Seg14 », tirée de DSEG14 © keshikan, SIL Open Font L
 `content://org.librehu.launcher.theme/theme` (colonnes `style`, `font`, `background`, `surface`, `surface_high`,
 `on_accent`, `text`, `text_dim`) et par la diffusion `org.librehu.action.THEME_CHANGED` (mêmes noms en extras).
 
+## Langues
+
+Anglais et français, plus 18 langues traduites par IA (Claude), sans relecture par des natifs pour l'instant :
+espagnol, italien, portugais (Portugal et Brésil), néerlandais, tchèque, roumain, russe, ukrainien, turc, coréen,
+chinois (simplifié et traditionnel), vietnamien, thaï, hindi, indonésien et géorgien. L'appli suit la langue
+d'Android. Corrections bienvenues : fichiers `app/src/main/res/values-<langue>/strings.xml`.
+
 ## Soutenir le projet
 
 LibreHU est développé bénévolement, sur le temps libre, et toutes ses applis restent gratuites. Si le projet vous est
