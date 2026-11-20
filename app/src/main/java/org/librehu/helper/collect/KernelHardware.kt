@@ -22,13 +22,22 @@ object KernelHardware : Collector {
         r.command("kernel/config.txt", "zcat /proc/config.gz 2>/dev/null || gzip -dc /proc/config.gz 2>/dev/null || echo 'no /proc/config.gz'", root = true)
         r.command("kernel/modules.txt", "cat /proc/modules 2>/dev/null; echo; ls -l /vendor/lib/modules /system/lib/modules /lib/modules 2>/dev/null", root = true)
         r.binary("kernel/device-tree.dtb", "cat /sys/firmware/fdt", root = true, timeoutS = 60)
-        r.command(
-            "kernel/device-tree.txt",
-            "cd /proc/device-tree 2>/dev/null && find . -type f | sort | while read f; do " +
-                "printf '%s: ' \"\$f\"; head -c 256 \"\$f\" | tr '\\000' ' ' | tr -cd '[:print:] '; echo; done",
-            root = true,
-            timeoutS = 180,
-        )
+        // Read by the app (the device tree is world-readable): strings, cells or bytes (DeviceTreeText). The shell
+        // version (tr -cd '[:print:] ') kept only the letters p, r, i, n, t: toybox's tr has no character classes.
+        val dt = DeviceTreeText.dump(java.io.File("/proc/device-tree"), r.anonymised)
+        if (dt != null) {
+            r.text("kernel/device-tree.txt", "# /proc/device-tree, read by the app (strings, 32-bit cells or bytes)\n$dt")
+        } else {
+            // not readable by the app: hex bytes through od (no character class), unit-only values left out
+            r.command(
+                "kernel/device-tree.txt",
+                "cd /proc/device-tree 2>/dev/null && find . -type f | sort | while read f; do printf '%s: ' \"\$f\"; " +
+                    "case \"\$f\" in *mac-address*|*serial*|*kaslr-seed*|*rng-seed*|*devinfo*|*masp*|*uuid*) echo '<not read>'; continue;; esac; " +
+                    "head -c 256 \"\$f\" | od -An -tx1 -v | tr -s ' \\n' '  '; echo; done",
+                root = true,
+                timeoutS = 180,
+            )
+        }
         r.command("hardware/input-devices.txt", "cat /proc/bus/input/devices; echo; getevent -lp 2>/dev/null", root = true)
         r.command(
             "hardware/keylayouts.txt",

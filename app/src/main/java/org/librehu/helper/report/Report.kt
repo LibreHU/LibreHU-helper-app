@@ -32,6 +32,10 @@ class Report(
     var bytes = 0L
         private set
 
+    /** True when the text files go through the redactor (anonymised report). */
+    val anonymised: Boolean
+        get() = redactor != null
+
     fun text(
         name: String,
         content: String,

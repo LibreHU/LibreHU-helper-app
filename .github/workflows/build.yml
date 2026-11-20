@@ -41,6 +41,10 @@ jobs:
             echo "LIBREHU_KEYSTORE=$RUNNER_TEMP/librehu.jks" >> "$GITHUB_ENV"
           fi
 
+      # Text view of the device tree (DeviceTreeText): strings, cells, bytes, redaction of unit-only values.
+      - name: Unit tests (device tree text)
+        run: ./gradlew --no-daemon :app:testDebugUnitTest --tests 'org.librehu.helper.collect.DeviceTreeTextTest'
+
       - name: Build APK (release, R8)
         run: ./gradlew --no-daemon :app:assembleRelease
 
